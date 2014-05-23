@@ -23,13 +23,15 @@ use IEEE.NUMERIC_STD.ALL;
 --! Use of real math arguments to calculate generics.
 use IEEE.MATH_REAL.ALL;
 
-
+--! This component calculates the binary coded decimal equivelent of a binary number. This module is not completely generec yet but it is verified to work at the size used in the implementation. For updates check https://github.com/Jaxc/bin2bcd
 
 entity bin2bcd is
-	generic(bits :integer:= 8);
-    Port ( bin : in STD_LOGIC_VECTOR (bits-1 downto 0);
-           BCD : out STD_LOGIC_VECTOR (bits*2-1 downto 0));
+	generic(bits :integer:= 8);				--! binary bit width
+    Port ( bin : in STD_LOGIC_VECTOR (bits-1 downto 0);		--! Binary input
+           BCD : out STD_LOGIC_VECTOR (bits*2-1 downto 0));	--! BCD output
 end bin2bcd;
+
+--! This component is a generic binary to binary coded decimal. It does this by using the BCD_block according to the method used in http://www.johnloomis.org/ece314/notes/devices/binary_to_BCD/bin_to_bcd.html. 
 
 architecture Behavioral of bin2bcd is
 
